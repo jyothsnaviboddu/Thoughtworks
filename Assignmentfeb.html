@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment</title>
+        <style>
+            #sl
+            {
+                display: flex;
+                flex-wrap: wrap;
+
+            }
+        </style>
+        
+    </head>
+    <body >
+       
+        <h2 id="s" >Score:0/0</h2>
+       
+        <ul id="sl">ScoreLine:</ul></br>
+       
+         <button id="d" onclick="display(event)">Dot</button>
+        <button id="zero" onclick="display(event)">0</button>
+        <button id="one" onclick="display(event)">1</button> 
+        <button id="two" onclick="display(event)">2</button>
+        <button id="three" onclick="display(event)">3</button>
+        <button id="four" onclick="display(event)">4</button>
+        <button id="five" onclick="display(event)">5</button>
+        <button id="six" onclick="display(event)">6</button>
+        <button id="wc" onclick="display(event)">W</button>
+        <button id="wd" onclick="display(event)">Wide</button>
+        <button id="nb" onclick="display(event)">noball</button>
+        <script>
+            var n=0,wc=0,count=0;
+            function display(ev)
+            {
+               
+                if(ev.target.id=="d")
+                {
+                    var b=document.createElement("b")
+                    b.innerText="."
+                    document.getElementById("sl").appendChild(b)
+                     count=count+1
+                }
+                if(ev.target.id=="zero")
+                {
+                    var c=document.createElement("b")
+                    c.innerText="0"
+                    document.getElementById("sl").appendChild(c)
+                     count=count+1
+                }
+                if(ev.target.id=="one")
+                {
+                    var c=document.createElement("b")
+                    n=n+1
+                    c.innerText="1"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                     count=count+1
+                }
+                 if(ev.target.id=="two")
+                {
+                    var c=document.createElement("b")
+                    n=n+2
+                    c.innerText="2"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                     count=count+1
+                }
+                if(ev.target.id=="three")
+                {
+                    var c=document.createElement("b")
+                    n=n+3
+                    c.innerText="3"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                     count=count+1
+                }
+                if(ev.target.id=="four")
+                {
+                    var c=document.createElement("b")
+                    n=n+4
+                    c.innerText="4"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                     count=count+1
+                }
+                if(ev.target.id=="five")
+                {
+                    var c=document.createElement("b")
+                    n=n+5
+                    c.innerText="5"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                     count=count+1
+
+                }
+                if(ev.target.id=="six")
+                {
+                    var c=document.createElement("b")
+                    n=n+6
+                    c.innerText="6"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                     count=count+1
+                }
+                
+                if(ev.target.id=="wc")
+                {
+                    var c=document.createElement("b")
+                    wc=wc+1
+                    c.innerText="1W"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                     count=count+1
+                }
+              
+
+                if(ev.target.id=="wd")
+                {
+                    var c=document.createElement("b")
+                     n=n+1
+                    c.innerText="1wd"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                
+                }
+                if(ev.target.id=="nb")
+                {
+                    var c=document.createElement("b")
+                    n=n+1
+                    c.innerText="1nb"
+                    document.getElementById("sl").appendChild(c)
+                    document.getElementById("s").innerText="Score"+n+"/"+wc
+                
+                }
+                console.log(count)
+                if(count==6)
+                {
+                
+                    var o=document.createElement("b")
+                    o.innerText="|"
+                    document.getElementById("sl").appendChild(o)
+                    count=0
+                }
+            }                
+                /*if(count==6)
+                {
+                     console.log(count)
+                    var o=document.createElement("h3")
+                    o.innerText="|"
+                    document.getElementById("sl").appendChild(o)
+                }*/
+        </script>
+    </body>
+</html>
