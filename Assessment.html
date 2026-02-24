@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ecom</title>
+        <style>
+            body
+            {
+                background-color: rgb(79, 86, 91);
+                margin: 10px;
+                padding-left: 45px;
+                padding-right: 30px;
+
+            }
+            #products
+            {
+                display: flex;
+                justify-content: space-evenly;
+                gap:20px;
+                flex-wrap: wrap;
+                margin: 10px;
+            }
+            .div{
+                background-color: aliceblue;
+                padding: 10px;
+                border-radius: 15px;
+        
+                height: 300px;
+                width:200px;
+                
+            }
+            .title{
+                padding: 20px;
+                font-size: 15px;
+            }
+            .item{
+                background-color:aliceblue;
+                width:890px;
+                height:400px;
+                position: absolute;
+                top:50px;
+                left:20%;
+                right: 50px;
+                 padding: 20px;
+                border-radius: 20px;
+                border:2px solid black;
+                box-shadow: 10px 10px 20px rgb(61, 64, 69);
+                
+            
+            }
+            .item img{
+                transform: 3s;
+        
+            }
+            .button
+            {
+                height: 30px;
+                width: 30px;
+                font-size: 15px;
+                position:absolute;
+                top: 10px;
+                right:10px;
+                padding: 5px;
+                border-radius: 10px;
+                background-color: aliceblue;
+                border: 2px solid black;
+              
+            }
+        </style>
+
+
+    </head>
+      <body>
+           
+        
+        <script>
+            
+            function genProducts()
+            {
+                fetch("https://dummyjson.com/products")
+                .then( function( res)
+                {
+                    console.log(res)
+                    return res.json()
+                    
+                })
+                .then(function(data)
+                { 
+                    console.log(data.products)
+                    genUI(data.products)
+                })
+            }
+          function   genUI(products)
+            {
+                var div=document.createElement("div")
+                div.id="products"
+                products.forEach(function(item)
+                {
+                    var p=document.createElement("div")
+                    p.className="div"
+                   /* p.onclick=function()
+                    {
+                        hiding(document.querySelector(".item"))
+                    }*/
+                     var i=document.createElement("img")
+                    i.src=item.thumbnail
+                    i.width=150
+                    i.height=150
+                    i.onclick=function()
+                    {
+                        console.log(item)
+                        DisplayItem(item)
+                    }
+        
+                    p.appendChild(i)
+                    var t=document.createElement("h5")
+                    t.className="title"
+                    t.innerText=item.title
+                    p.appendChild(t)
+
+
+                   // console.log(item.thumbnail)
+                    div.appendChild(p)
+                    
+                    
+                });
+                document.body.appendChild(div)
+
+            }
+            function DisplayItem(item)
+            {
+                var i=document.createElement("div")
+                i.className="item"
+            
+                var btn=document.createElement("button")
+                btn.className="button"
+                btn.innerText="X"
+                btn.onclick=function()
+                {
+                     hiding(i)
+                }
+                i.appendChild(btn)
+                var name=document.createElement("h2")
+                name.innerText=item.title
+                i.appendChild(name)
+                var des=document.createElement("p")
+                des.innerText=item.description
+                i.appendChild(des)
+                var pimg=document.createElement("img")
+                pimg.src=item.thumbnail
+                i.appendChild(pimg)
+                document.body.appendChild(i)
+            
+            }
+
+            function hiding(i)
+            {
+                i.style.display="none"
+            }
+            genProducts()
+        </script>
+    </body>
+</html>
