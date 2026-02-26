@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Webpage</title>
+    </head>
+    <body>
+        <table border="2">
+            <thead>
+                <th onclick="sort('name',event)" ><!--<span></span>--> Name</th>
+                <th onclick="sort('caloriesPerServing',event)">Calories</th>
+                <th onclick="sort('cookTimeMinutes',event)"> Cooking Time</th>
+                <th  onclick="sort('prepTimeMinutes',event)">  Preparation time</th>
+                <th onclick="sort('rating',event)">Rating</th>
+            </thead>
+            <tbody id="tb">
+            </tbody>
+        </table>
+        <button onclick="previous()" id="pr">Preveious</button><button onclick="next()" id="nxt">Next</button>
+        <script>
+            var s=0,r={};
+            function Recipies()
+            {
+                fetch("https://dummyjson.com/recipes?limit=10&skip="+s)
+                .then((res)=>{return res.json()})
+                .then((data)=>{
+                console.log(data.recipes)
+                genUI(data.recipes)
+                r=data.recipes
+                
+
+                })
+            }
+            function genUI(recipes)
+            {
+                document.getElementById("tb").innerHTML=""
+                recipes.forEach(r => 
+                {
+                    var ntr=`<tr>
+                                <td>${r.name}</td>
+                                <td>${r.caloriesPerServing}</td>
+                                <td>${r.cookTimeMinutes}</td>
+                                <td>${r.prepTimeMinutes}</td>
+                                <td>${r.rating}</td>
+                                 </tr>  `
+                     document.getElementById("tb").innerHTML+=ntr           
+                    
+                });
+                
+            }
+            function previous()
+            {
+                
+                s=s-10
+                if(s==0)
+                {
+                 //   document.getElementById("pr").disabled="true"
+                 //  document.getElementById("pr").disbabled="true"
+
+                }
+                if(s!=0)
+                {
+                       
+                  //  document.getElementById("pr").enabled="true"    
+
+                }
+                Recipies()
+
+            }
+            function next()
+            {
+                s=s+10
+                if(s>=40)
+                {
+                    console.log("Disable ayyanu")
+                    // document.getElementById("nxt").disabled="true"
+                 }
+                 if(s!=40||s<=40)
+                 {
+                    console.log("Enable ayyanu")
+                   /// document.getElementById("nxt").enabled="true"  
+                 }
+                Recipies()
+            }
+          /*   function sort(k,e)
+             {
+                 r.sort(function (e1, e2) {
+                if (e1[k] < e2[k]) { return -1 }
+                else { return 1 }
+            })*/
+           function sort(k,e)
+           {
+               console.log(r)
+               r.sort((a,b)=>{
+                if(a[k]<b[k]){
+                    return -1
+                }
+                else{return 1}
+               });
+              // console.log(r)
+               genUI(r)
+
+           }
+           
+
+        
+                
+             
+            Recipies()
+        </script>
+    </body>
+</html>    
