@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Webpage</title>
+         <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+        
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+         <style>
+            .group{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                list-style: none;
+            }
+            .card{
+                color: #d2cfcf;
+                height: 200px;
+                width: 200px;
+                border: 2px solid;
+                padding: 20px;
+                border-radius: 20px;
+                background: linear-gradient(to left ,rgb(214, 59, 196),rgb(115, 167, 196));
+            }
+            .card img{
+                height: 80px;
+                width: 80px;
+            }
+            .btn{
+                display: flex;
+                gap:10px;
+            }
+        </style>
+   
+    
+    </head>
+    <body>
+        <div id="root"></div>
+        <div class="btn">
+             <button onclick="Previous()">Previous</button><button onclick="Next()">NExt</button>
+        </div>
+       
+        <script type="text/babel">
+          /*  var s=0
+                fetch("https://dummyjson.com/products?limit=10")
+                .then( function(res)
+                {
+                    console.log(res.json())
+                        return res.json()
+                })
+                .then( function(data){
+                    console.log(data.products)
+                })*/
+          var s=0;     
+          function Products()
+         {
+            fetch("https://dummyjson.com/products?limit=10&skip="+s)
+            .then(function(res)
+            {
+                return res.json()
+                console.log(res.json())
+            })
+            .then(function(data)
+            {
+              // genTable(data.products)
+                 console.log(data.products)
+                 UI(data.products)
+            })
+         }
+          function UI(products)
+          {
+            var ul=<ul class="group">
+                        {
+                            products.map( function(p)
+                             {
+                                return <li class="card">
+                                    <div>
+                                        <h2>{p.title}</h2>
+                                        <img src={p.thumbnail}></img>
+                                      </div>  
+                                    </li>
+                                
+                            })
+                        }
+                    </ul>
+                    ReactDOM.render(ul,document.getElementById("root"))
+
+
+          }
+          function Previous()
+          {
+            s=s-10
+            Products()
+          } 
+         function Next()
+          {
+            s=s+10
+             Products()
+
+          } 
+        
+                  Products()
+       
+        
+        </script>
+    </body>
+</html>
